@@ -15,11 +15,10 @@ class ScreenStateEventEntry {
 
 class TimerCubit extends Cubit<TimerState> {
   TimerCubit() : super(const TimeInitial());
-  @override
   final Screen _screen = Screen();
   late StreamSubscription<ScreenStateEvent> _subscription;
   bool started = false;
-  List<ScreenStateEventEntry>? _log = [];
+  final List<ScreenStateEventEntry> _log = [];
 
   // @override
   // void initState() {
@@ -74,14 +73,14 @@ class TimerCubit extends Cubit<TimerState> {
       // if (wip.elapsed! < 20*60) {
       print(wip.sleep);
       print(wip.elapsed);
-      if (entry!.isNotEmpty) {
-        print(entry?.last.event.toString().split('.').last ?? "no entry yet");
+      if (entry.isNotEmpty) {
+        print(entry.last.event.toString().split('.').last ?? "no entry yet");
       }
       if (wip.sleep! > 30) {
         emit(const TimeInitial());
       } else {
         if (wip.elapsed! < 1200) {
-          if (entry!.isEmpty || entry == null) {
+          if (entry.isEmpty || entry == null) {
             emit(TimeProgress(wip.elapsed! + 1, wip.sleep));
           } else {
             if (entry.last.event.toString().split('.').last ==

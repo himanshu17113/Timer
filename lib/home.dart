@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
                       BlocProvider.of<TimerCubit>(context).startTimer(0),
                   child: const Text("press")),
             );
-          } else if (state is TimeProgress) {
+          } else if (state is TimeProgress ) {
             Duration duration = Duration(seconds: state.elapsed!);
             return Center(
               child: Text(duration.toString().trimLeft()),
